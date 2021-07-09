@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes islands-spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.spin2_view_default.spin2_tone_default.spin2_progress_yes {
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+}
+.spin2_progress_yes {
+  display: inline-block;
+  -webkit-animation: islands-spin2 1s 0.21s infinite linear;
+  animation: islands-spin2 1s 0.21s infinite linear;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.spin2 {
+  width: 24px;
+  height: 24px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 100px;
+}
