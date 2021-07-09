@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../../App";
 import { Link } from "react-router-dom";
 import Header from "../../Sections/Header/index";
 import { ContainerFluid } from "../../UI/Helpers/Container";
@@ -23,6 +24,7 @@ import Project from "../../Entity/Project/index";
 
 const BlockWrapper = styled.div`
   margin-top: 32px;
+  overflow: hidden;
 
   @media (max-width: 480px) {
     margin-top: 15px;
@@ -30,6 +32,7 @@ const BlockWrapper = styled.div`
 `;
 const BlockWrapper2 = styled.div`
   margin-top: 56px;
+  overflow: hidden;
 
   @media (max-width: 480px) {
     margin-top: 24px;
@@ -48,7 +51,9 @@ const Avatar = styled.div`
   flex-shrink: 0;
 
   @media (max-width: 480px) {
-    width: 100%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }
 `;
 const Name = styled.h2`
@@ -62,14 +67,42 @@ const Status = styled.div`
   line-height: 18px;
   color: ${BLACK};
   opacity: 0.5;
+
+  @media (max-width: 480px) {
+    text-align: center;
+  }
 `;
 const Info = styled.div`
   margin-left: 24px;
+  @media (max-width: 480px) {
+    margin-left: 0px;
+    width: 100%;
+  }
+`;
+const SkillWrapper = styled.div`
+  overflow: hidden;
+  @media (max-width: 480px) {
+    /* white-space: nowrap; */
+    /* overflow-x: scroll; */
+    margin-left: -15px;
+    margin-right: -15px;
+    /* padding: 0 15px; */
+  }
 `;
 const SkillBlock = styled.div`
   display: flex;
   align-items: center;
   margin: 14px 0;
+
+  @media (max-width: 480px) {
+    white-space: nowrap;
+    overflow-x: scroll;
+    /* margin-left: -15px;
+    margin-right: -15px; */
+    padding: 12px 0px;
+    margin-bottom: -12px;
+    margin-top: 4px;
+  }
 `;
 const VerifiedIcon = styled.div`
   width: 24px;
@@ -80,6 +113,9 @@ const VerifiedIcon = styled.div`
   background-repeat: no-repeat;
   background-image: url(${VerifiedImage});
   flex-shrink: 0;
+  @media (max-width: 480px) {
+    margin-right: 0;
+  }
 `;
 const Skill = styled.div`
   background: ${GRAY2};
@@ -87,6 +123,15 @@ const Skill = styled.div`
   padding: 7px 9px;
   font-size: ${SKILL_FONTSIZE};
   margin-right: 6px;
+
+  @media (max-width: 480px) {
+    &:first-child {
+      margin-left: 15px;
+    }
+    &:last-child {
+      margin-right: 15px !important;
+    }
+  }
 
   &:last-child {
     margin-right: 0;
@@ -125,6 +170,21 @@ const EditProfile = styled.div`
 const Projects = styled.div`
   margin: 20px 0 20px 0;
 `;
+const Flex2 = styled.div`
+  display: flex;
+  @media (max-width: 480px) {
+    align-items: center;
+    flex-direction: column;
+  }
+`;
+const Flex3 = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 480px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+`;
 
 const AuthorPersonalCabinet = () => {
   const [tab, setTab] = React.useState(0);
@@ -134,24 +194,29 @@ const AuthorPersonalCabinet = () => {
       <Header />
       <BlockWrapper>
         <ContainerFluid>
-          <Flex>
+          <Flex2>
             <Avatar image={Photo} />
             <Info>
-              <Flex alignItemsCenter>
+              <Flex3 alignItemsCenter>
                 <Name>Артём Апаркин</Name>
                 <VerifiedIcon title="" />
-                <Link to={"/edit"}>
-                  <EditProfile>Редактировать профиль</EditProfile>
-                </Link>
-              </Flex>
+                {!mobile && (
+                  <Link to={"/edit"}>
+                    <EditProfile>Редактировать профиль</EditProfile>
+                  </Link>
+                )}
+              </Flex3>
               <Status>Занимаюсь программированием с шести лет</Status>
-              <SkillBlock>
-                <Skill>Программирование</Skill>
-                <Skill>C++</Skill>
-                <Skill>Математика</Skill>
-                <Skill>React TypeScript</Skill>
-                <Skill>JavaScript</Skill>
-              </SkillBlock>
+
+              <SkillWrapper>
+                <SkillBlock>
+                  <Skill>Программирование</Skill>
+                  <Skill>C++</Skill>
+                  <Skill>Математика</Skill>
+                  <Skill>React TypeScript</Skill>
+                  <Skill>JavaScript</Skill>
+                </SkillBlock>
+              </SkillWrapper>
               <Line margin="18px 0" />
               <Flex baseline>
                 <StatBlock>
@@ -184,7 +249,7 @@ const AuthorPersonalCabinet = () => {
                 </StatBlock>
               </Flex>
             </Info>
-          </Flex>
+          </Flex2>
         </ContainerFluid>
       </BlockWrapper>
       <BlockWrapper2>
@@ -196,7 +261,7 @@ const AuthorPersonalCabinet = () => {
             setTab={setTab}
           />
           <Projects>
-            <Flex fullWidth>
+            <Flex mobileColumn fullWidth>
               <Project
                 type="Лабораторная работа"
                 topic="Положение о стипендиальном обеспечении и других формах материальной

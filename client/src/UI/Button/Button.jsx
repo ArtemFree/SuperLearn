@@ -19,9 +19,14 @@ import {
 
 const ButtonWrapper = styled.button`
   font-size: ${BASE_FONTSIZE};
-  padding: 10px 16px;
   border-radius: 4px;
   font-family: "Inter", sans-serif;
+  user-select: none;
+  padding: 10px 16px;
+
+  @media (max-width: 480px) {
+    padding: 16px 24px;
+  }
 
   width: ${(p) => (p.fixedWidth ? "100%" : "")};
 
@@ -86,6 +91,7 @@ const ButtonWrapper = styled.button`
   }
 
   &:active {
+    outline: none;
     background-color: ${(p) => {
       if (p.primary) {
         return PRIMARY_MOST_DARK_COLOR;
@@ -93,6 +99,9 @@ const ButtonWrapper = styled.button`
         return SECONDARY_MOST_DARK_COLOR;
       }
     }};
+  }
+  &:focus {
+    outline: none;
   }
 `;
 

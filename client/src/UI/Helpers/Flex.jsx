@@ -14,6 +14,10 @@ const Flex = styled.div`
     else if (p.baseline) return "baseline";
     else return "";
   }};
+
+  @media (max-width: 480px) {
+    flex-direction: ${(p) => (p.mobileColumn ? "column" : "")};
+  }
 `;
 
 export default Flex;

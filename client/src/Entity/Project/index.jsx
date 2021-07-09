@@ -5,6 +5,7 @@ import {
   BLACK,
   PRIMARY_COLOR,
   GREEN_MONEY,
+  BORDER_BUTTON_PRIMARY,
 } from "../../UI/Constants";
 import Button from "../../UI/Button/Button";
 
@@ -22,6 +23,16 @@ const ProjectWrapper = styled.div`
     /* box-shadow: 0 27px 31px rgb(0 0 0 / 9%), 0 0px 2px rgb(0 0 0 / 13%); */
     box-shadow: 0 20px 36px rgb(0 0 0 / 15%), 0 0 3px rgb(0 0 0 / 8%);
     border: 1px solid transparent;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+    &:hover {
+      box-shadow: none;
+      border: ${BORDER_BUTTON_PRIMARY};
+    }
   }
 `;
 const Header = styled.h2`

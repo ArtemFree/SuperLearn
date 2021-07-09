@@ -7,6 +7,10 @@ import RegistrationError from "./Page/Errors/RegistrationError/index";
 
 const history = createBrowserHistory();
 
+export const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  navigator.userAgent
+);
+
 function App() {
   return (
     <Router history={history}>

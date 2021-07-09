@@ -16,6 +16,10 @@ const HeaderWrapper = styled.div`
   background-color: ${WHITE};
   border-bottom: ${BORDER_INPUT};
   padding: 14px 0;
+
+  @media screen and (max-width: 480px) {
+    padding: 20px 0;
+  } ;
 `;
 const HeaderBody = styled.div`
   display: flex;
