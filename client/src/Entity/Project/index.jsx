@@ -26,6 +26,7 @@ const ProjectWrapper = styled.div`
   }
   @media (max-width: 480px) {
     width: 100%;
+    padding: 16px 20px 16px 20px;
     &:not(:first-child) {
       margin-top: 12px;
     }
@@ -45,22 +46,39 @@ const Header = styled.h2`
   &:hover {
     color: ${PRIMARY_COLOR};
   }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 const Subject = styled.div`
   opacity: 1;
   font-size: 13px;
   color: ${BLACK};
   margin-top: 6px;
+  @media (max-width: 480px) {
+    margin-top: 6px;
+    line-height: 18px;
+  }
 `;
 const Topic = styled.div`
   font-size: 16px;
   margin-top: 16px;
   line-height: 24px;
   color: ${BLACK};
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 20px;
+  }
 `;
 const Stats = styled.div`
   margin-top: 16px;
   display: flex;
+  @media (max-width: 480px) {
+    margin-top: 20px;
+  }
 `;
 const Stat = styled.div`
   &:not(:first-child) {
@@ -75,6 +93,9 @@ const StatContent = styled.div`
   font-size: 16px;
   color: ${BLACK};
   margin-top: 4px;
+  @media (max-width: 480px) {
+    white-space: nowrap;
+  }
 `;
 const StatRow = styled.div`
   display: flex;

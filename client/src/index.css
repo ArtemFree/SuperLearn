@@ -18,6 +18,17 @@ body {
 
 a {
   text-decoration: none;
+  color: unset;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noscroll {
+  overflow: hidden;
 }
 
 .spin2_view_default.spin2_tone_default.spin2_progress_yes {

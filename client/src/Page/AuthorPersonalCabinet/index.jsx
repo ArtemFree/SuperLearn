@@ -54,6 +54,7 @@ const Avatar = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    background-size: 103%;
   }
 `;
 const Name = styled.h2`
@@ -61,6 +62,17 @@ const Name = styled.h2`
   font-size: 24px;
   line-height: 29px;
   margin: 8px 0;
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin: 14px 0 8px 0;
+    line-height: 24px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    width: calc(100% - 56px);
+  }
 `;
 const Status = styled.div`
   font-size: 15px;
@@ -70,6 +82,14 @@ const Status = styled.div`
 
   @media (max-width: 480px) {
     text-align: center;
+    /* font-size: 20px;
+    margin: 14px 0 8px 0; */
+    /* line-height: 24px; */
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100%);
   }
 `;
 const Info = styled.div`
@@ -84,9 +104,9 @@ const SkillWrapper = styled.div`
   @media (max-width: 480px) {
     /* white-space: nowrap; */
     /* overflow-x: scroll; */
+    /* padding: 0 15px; */
     margin-left: -15px;
     margin-right: -15px;
-    /* padding: 0 15px; */
   }
 `;
 const SkillBlock = styled.div`
@@ -125,6 +145,8 @@ const Skill = styled.div`
   margin-right: 6px;
 
   @media (max-width: 480px) {
+    padding: 9px 14px;
+    font-size: 14px;
     &:first-child {
       margin-left: 15px;
     }
@@ -141,6 +163,15 @@ const StatBlock = styled.div`
   margin-right: 48px;
   &:last-child {
     margin-right: 0;
+  }
+
+  @media (max-width: 480px) {
+    &:first-child {
+      margin-left: 15px;
+    }
+    &:last-child {
+      margin-right: 15px;
+    }
   }
 `;
 const StatHeader = styled.div`
@@ -182,7 +213,19 @@ const Flex3 = styled.div`
   align-items: center;
   @media (max-width: 480px) {
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    /* flex-wrap: wrap; */
+  }
+`;
+const StatsWrapper = styled.div`
+  align-items: baseline;
+  display: flex;
+
+  @media (max-width: 480px) {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding: 0 0 12px 0;
+    margin: 0 -15px -12px -15px;
   }
 `;
 
@@ -198,7 +241,7 @@ const AuthorPersonalCabinet = () => {
             <Avatar image={Photo} />
             <Info>
               <Flex3 alignItemsCenter>
-                <Name>Артём Апаркин</Name>
+                <Name>Артём Апаркин Алексанович Человек</Name>
                 <VerifiedIcon title="" />
                 {!mobile && (
                   <Link to={"/edit"}>
@@ -206,7 +249,10 @@ const AuthorPersonalCabinet = () => {
                   </Link>
                 )}
               </Flex3>
-              <Status>Занимаюсь программированием с шести лет</Status>
+              <Status>
+                Занимаюсь программированием с шести лет Занимаюсь
+                программированием с шести лет
+              </Status>
 
               <SkillWrapper>
                 <SkillBlock>
@@ -218,7 +264,7 @@ const AuthorPersonalCabinet = () => {
                 </SkillBlock>
               </SkillWrapper>
               <Line margin="18px 0" />
-              <Flex baseline>
+              <StatsWrapper>
                 <StatBlock>
                   <StatHeader>Общее впечателение</StatHeader>
                   <StatOpinion>Профессионал (87%)</StatOpinion>
@@ -247,7 +293,7 @@ const AuthorPersonalCabinet = () => {
                   <StatHeader>Отзывов</StatHeader>
                   <StatNumber>154</StatNumber>
                 </StatBlock>
-              </Flex>
+              </StatsWrapper>
             </Info>
           </Flex2>
         </ContainerFluid>
