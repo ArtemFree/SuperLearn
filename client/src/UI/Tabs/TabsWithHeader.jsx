@@ -86,6 +86,8 @@ const Flex = styled.div`
 `;
 
 export const TabsWithHeader = ({ title, tabs, selected, setTab }) => {
+  const currentTab = React.useRef(null);
+
   return (
     <>
       <TabsWrapper>
@@ -96,6 +98,8 @@ export const TabsWithHeader = ({ title, tabs, selected, setTab }) => {
               {tabs.map((tab, index) => {
                 return (
                   <Tab
+                    key={tab + index}
+                    ref={index === selected ? currentTab : null}
                     onClick={() => setTab(index)}
                     selected={selected === index}
                   >

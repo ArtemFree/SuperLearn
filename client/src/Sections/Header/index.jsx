@@ -40,7 +40,7 @@ const MobileMenu = styled.ul`
 `;
 const MobileMenuElement = styled.li`
   color: ${PRIMARY_COLOR};
-  font-size: 18px;
+  font-size: 20px;
   padding: 16px 15px;
   display: flex;
   align-items: center;

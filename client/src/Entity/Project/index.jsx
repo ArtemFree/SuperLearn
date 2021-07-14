@@ -9,6 +9,8 @@ import {
 } from "../../UI/Constants";
 import Button from "../../UI/Button/Button";
 
+import { Link } from "react-router-dom";
+
 const ProjectWrapper = styled.div`
   border: ${BORDER_INPUT};
   padding: 20px;
@@ -116,6 +118,7 @@ const ButtonBlock = styled.div`
 const rouble = "₽";
 
 const Project = ({
+  id,
   type,
   subject,
   topic,
@@ -127,7 +130,9 @@ const Project = ({
 }) => {
   return (
     <ProjectWrapper>
-      <Header>{type}</Header>
+      <Link to={`/project/${id}`}>
+        <Header>{type}</Header>
+      </Link>
       <Subject>{subject}</Subject>
       <Topic>{topic}</Topic>
       <Stats>
@@ -163,9 +168,11 @@ const Project = ({
         </StatColumn>
       </Stats>
       <ButtonBlock>
-        <Button simple fixedWidth>
-          Подробнее
-        </Button>
+        <Link to={`/project/${id}`}>
+          <Button simple fixedWidth>
+            Подробнее
+          </Button>
+        </Link>
       </ButtonBlock>
     </ProjectWrapper>
   );

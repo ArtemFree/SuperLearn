@@ -16,28 +16,13 @@ import VerifiedImage from "../../Assets/verified.svg";
 import Photo from "../../Assets/photo.jpg";
 import Line from "../../UI/Line/Line";
 import Flex from "../../UI/Helpers/Flex";
+import { BlockWrapper, BlockWrapper2 } from "../../UI/Helpers/BlockWrapper";
 import { TabsWithHeader } from "../../UI/Tabs/TabsWithHeader";
 import StarFilledImage from "../../Assets/star_filled.svg";
 import StarHalfFilledImage from "../../Assets/star_half_filled.svg";
 import StarNotFilledImage from "../../Assets/star_not_filled.svg";
 import Project from "../../Entity/Project/index";
 
-const BlockWrapper = styled.div`
-  margin-top: 32px;
-  overflow: hidden;
-
-  @media (max-width: 480px) {
-    margin-top: 15px;
-  }
-`;
-const BlockWrapper2 = styled.div`
-  margin-top: 56px;
-  overflow: hidden;
-
-  @media (max-width: 480px) {
-    margin-top: 24px;
-  }
-`;
 const Avatar = styled.div`
   width: 220px;
   height: 200px;
@@ -309,6 +294,7 @@ const AuthorPersonalCabinet = () => {
           <Projects>
             <Flex mobileColumn fullWidth>
               <Project
+                id="0934-2332-32434-6546"
                 type="Лабораторная работа"
                 topic="Положение о стипендиальном обеспечении и других формах материальной
         поддержки обучающихся СФУ"
@@ -320,6 +306,7 @@ const AuthorPersonalCabinet = () => {
                 sources="20"
               />
               <Project
+                id="undefined"
                 type="Диплом"
                 topic="Положение о стипендиальном обеспечении и других формах материальной
         поддержки обучающихся СФУ"

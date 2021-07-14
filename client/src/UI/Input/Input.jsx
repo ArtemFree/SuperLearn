@@ -31,6 +31,12 @@ const InputWrapper = styled.input`
     outline: 0;
     border: ${BORDER_BUTTON_PRIMARY};
   }
+
+  @media (max-width: 480px) {
+    font-size: 17px;
+    padding: 16px 14px;
+    width: ${(p) => (p.fixedWidth ? "100%" : "initial")};
+  }
 `;
 
 const Title = styled.div`
@@ -59,12 +65,17 @@ const ErrorLabel = styled.div`
 
 const Input = ({
   title,
+  onFocus,
+  onBlur,
   label,
   placeholder,
   error,
   errorMessage,
   type,
   name,
+  value,
+  onChange,
+  fixedWidth,
 }) => {
   const input = React.useRef(null);
   return (
@@ -75,7 +86,12 @@ const Input = ({
         </Title>
       )}
       <InputWrapper
+        fixedWidth={fixedWidth}
         error={error}
+        value={value}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={(e) => onChange(e.target.value)}
         ref={input}
         name={name}
         spellCheck="false"

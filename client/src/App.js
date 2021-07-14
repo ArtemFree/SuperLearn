@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 
 import AuthorPersonalCabinet from "./Page/AuthorPersonalCabinet/index";
 import RegistrationError from "./Page/Errors/RegistrationError/index";
+import ProjectPage from "./Page/Project/ProjectPage";
 
 const history = createBrowserHistory();
 
@@ -17,6 +18,8 @@ function App() {
       <Switch>
         <Route path="/cabinet" component={AuthorPersonalCabinet} />
         <Route path="/registration-error" component={RegistrationError} />
+        <Route path="/project-not-found" component={RegistrationError} />
+        <Route path="/project/:id" component={ProjectPage} />
       </Switch>
     </Router>
   );
