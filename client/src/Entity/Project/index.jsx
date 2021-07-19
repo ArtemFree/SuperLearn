@@ -75,23 +75,23 @@ const Topic = styled.div`
     margin-top: 20px;
   }
 `;
-const Stats = styled.div`
+export const Stats = styled.div`
   margin-top: 16px;
   display: flex;
   @media (max-width: 480px) {
     margin-top: 20px;
   }
 `;
-const Stat = styled.div`
+export const Stat = styled.div`
   &:not(:first-child) {
     margin-top: 20px;
   }
 `;
-const StatHeader = styled.div`
+export const StatHeader = styled.div`
   font-size: 11px;
   color: ${BLACK};
 `;
-const StatContent = styled.div`
+export const StatContent = styled.div`
   font-size: 16px;
   color: ${BLACK};
   margin-top: 4px;
@@ -99,15 +99,15 @@ const StatContent = styled.div`
     white-space: nowrap;
   }
 `;
-const StatRow = styled.div`
+export const StatRow = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
 `;
-const StatColumn = styled.div`
+export const StatColumn = styled.div`
   margin-right: 32px;
 `;
-const Payment = styled.span`
+export const Payment = styled.span`
   font-weight: 500;
   color: ${GREEN_MONEY};
 `;

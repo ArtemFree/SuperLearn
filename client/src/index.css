@@ -27,6 +27,10 @@ ul {
   list-style: none;
 }
 
+button {
+  font-family: Inter, sans-serif;
+}
+
 .noscroll {
   overflow: hidden;
 }

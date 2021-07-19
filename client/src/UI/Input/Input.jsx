@@ -13,7 +13,8 @@ import {
 } from "../Constants";
 
 const InputWrapper = styled.input`
-  font-size: ${BASE_FONTSIZE};
+  font-size: 16px;
+  width: ${(p) => (p.fixedWidth ? "100%" : "initial")};
   padding: 12px 14px;
   border-radius: 4px;
   border: ${(p) => {
@@ -33,7 +34,7 @@ const InputWrapper = styled.input`
   }
 
   @media (max-width: 480px) {
-    font-size: 17px;
+    font-size: 16px;
     padding: 16px 14px;
     width: ${(p) => (p.fixedWidth ? "100%" : "initial")};
   }
