@@ -64,6 +64,8 @@ const ErrorLabel = styled.div`
   margin-top: 4px;
 `;
 
+const Wrapper = styled.div``;
+
 const Input = ({
   title,
   onFocus,
@@ -77,10 +79,11 @@ const Input = ({
   value,
   onChange,
   fixedWidth,
+  margin,
 }) => {
   const input = React.useRef(null);
   return (
-    <>
+    <Wrapper style={{ margin: margin ?? "0" }}>
       {title && (
         <Title error={error} onClick={() => input.current.focus()}>
           {title}
@@ -92,7 +95,7 @@ const Input = ({
         value={value}
         onFocus={onFocus}
         onBlur={onBlur}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         ref={input}
         name={name}
         spellCheck="false"
@@ -103,7 +106,7 @@ const Input = ({
       />
       {label && !errorMessage && <Label error={error}>{label}</Label>}
       {errorMessage && <ErrorLabel>{errorMessage}</ErrorLabel>}
-    </>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import Logo from "../../Assets/LogoColor.svg";
 import { Link } from "react-router-dom";
 import { ContainerFluid } from "../../UI/Helpers/Container";
@@ -39,8 +40,8 @@ const MobileMenu = styled.ul`
   list-style: none;
 `;
 const MobileMenuElement = styled.li`
-  color: ${PRIMARY_COLOR};
-  font-size: 20px;
+  /* color: ${PRIMARY_COLOR}; */
+  font-size: 16px;
   padding: 16px 15px;
   display: flex;
   align-items: center;
@@ -89,13 +90,13 @@ const links = [
   },
   {
     type: "simple",
-    link: "/offer",
-    text: "Заказать работу",
+    link: "/signin",
+    text: "Войти",
   },
   {
     type: "simple",
-    link: "/cabinet",
-    text: "Личный кабинет",
+    link: "/signup",
+    text: "Зарегистрироваться",
   },
   {
     type: "simple",
@@ -107,6 +108,12 @@ const links = [
     link: "/authors",
     text: "Авторам",
   },
+  {
+    type: "simple",
+    link: "/signup",
+    text: "Зарегистрироваться",
+  },
+
   {
     type: "simple",
     link: "/offer",
@@ -121,6 +128,7 @@ const links = [
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = React.useState(false);
+  const location = useLocation();
 
   React.useEffect(() => {
     if (mobileMenu) {
@@ -163,7 +171,15 @@ const Header = () => {
                   if (link.type === "simple") {
                     return (
                       <Link to={link.link}>
-                        <MobileMenuElement>{link.text}</MobileMenuElement>
+                        <MobileMenuElement
+                          onClick={() => {
+                            if (location.pathname === link.link) {
+                              setMobileMenu(false);
+                            }
+                          }}
+                        >
+                          {link.text}
+                        </MobileMenuElement>
                       </Link>
                     );
                   } else if (link.type === "negative") {

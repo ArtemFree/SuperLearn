@@ -5,6 +5,8 @@ import { createBrowserHistory } from "history";
 import AuthorPersonalCabinet from "./Page/AuthorPersonalCabinet/index";
 import RegistrationError from "./Page/Errors/RegistrationError/index";
 import ProjectPage from "./Page/Project/ProjectPage";
+import SignIn from "./Page/SignIn";
+import SignUp from "./Page/SignUp";
 
 const history = createBrowserHistory();
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/registration-error" component={RegistrationError} />
         <Route path="/project-not-found" component={RegistrationError} />
         <Route path="/project/:id" component={ProjectPage} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
       </Switch>
     </Router>
   );

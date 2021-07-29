@@ -23,6 +23,7 @@ const ButtonWrapper = styled.button`
   font-family: "Inter", sans-serif;
   user-select: none;
   padding: 10px 16px;
+  transition: transform 0.1s ease;
 
   @media (max-width: 480px) {
     padding: 16px 24px;
@@ -74,24 +75,26 @@ const ButtonWrapper = styled.button`
         return PRIMARY_DARK_COLOR;
       } else if (p.secondary) {
         return SECONDARY_DARK_COLOR;
-      } else if (p.simple) {
-        return PRIMARY_COLOR;
       }
+      // else if (p.simple) {
+      //   return PRIMARY_COLOR;
+      // }
     }};
     border: ${(p) => {
-      if (p.simple) {
-        return BORDER_BUTTON_PRIMARY;
-      }
+      // if (p.simple) {
+      //   return BORDER_BUTTON_PRIMARY;
+      // }
     }};
     color: ${(p) => {
-      if (p.simple) {
-        return WHITE;
-      }
+      // if (p.simple) {
+      //   return WHITE;
+      // }
     }};
   }
 
   &:active {
     outline: none;
+    transform: scale(0.98);
     background-color: ${(p) => {
       if (p.primary) {
         return PRIMARY_MOST_DARK_COLOR;
@@ -117,9 +120,12 @@ const Button = ({
   positive,
   fixedWidth,
   children,
+  margin,
+  style,
 }) => {
   return (
     <ButtonWrapper
+      style={{ ...style, margin: margin }}
       simple={simple}
       disabled={disabled}
       onClick={onClick}
