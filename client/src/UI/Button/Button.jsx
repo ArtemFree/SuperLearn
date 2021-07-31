@@ -8,17 +8,19 @@ import {
   PRIMARY_DARK_COLOR,
   PRIMARY_MOST_DARK_COLOR,
   BASE_FONTSIZE,
-  SECONDARY_DARK_COLOR,
   SECONDARY_MOST_DARK_COLOR,
   RED,
   GREEN,
   BORDER_BUTTON_NEGATIVE,
   BORDER_BUTTON_POSITIVE,
   BORDER_INPUT,
+  SECONDARY_COLOR,
+  SECONDARY_DARK_COLOR,
 } from "../Constants";
 
 const ButtonWrapper = styled.button`
   font-size: ${BASE_FONTSIZE};
+  font-weight: 500;
   border-radius: 4px;
   font-family: "Inter", sans-serif;
   user-select: none;
@@ -36,7 +38,7 @@ const ButtonWrapper = styled.button`
   background-color: ${(p) => {
     if (p.primary) {
       return PRIMARY_COLOR;
-    } else if (p.secondary) {
+    } else if (p.outline) {
       return WHITE;
     } else if (p.negative) {
       return RED;
@@ -44,13 +46,15 @@ const ButtonWrapper = styled.button`
       return GREEN;
     } else if (p.simple) {
       return WHITE;
+    } else if (p.secondary) {
+      return SECONDARY_COLOR;
     }
   }};
 
   color: ${(p) => {
-    if (p.negative || p.positive || p.primary) {
+    if (p.negative || p.positive || p.primary || p.secondary) {
       return WHITE;
-    } else if (p.secondary) {
+    } else if (p.outline) {
       return PRIMARY_COLOR;
     }
   }};
@@ -58,7 +62,7 @@ const ButtonWrapper = styled.button`
   border: ${(p) => {
     if (p.primary) {
       return BORDER_BUTTON_PRIMARY;
-    } else if (p.secondary) {
+    } else if (p.outline) {
       return BORDER_BUTTON_PRIMARY;
     } else if (p.negative) {
       return BORDER_BUTTON_NEGATIVE;
@@ -66,6 +70,8 @@ const ButtonWrapper = styled.button`
       return BORDER_BUTTON_POSITIVE;
     } else if (p.simple) {
       return BORDER_INPUT;
+    } else if (p.secondary) {
+      return BORDER_BUTTON_POSITIVE;
     }
   }};
 
@@ -73,12 +79,11 @@ const ButtonWrapper = styled.button`
     background-color: ${(p) => {
       if (p.primary) {
         return PRIMARY_DARK_COLOR;
+      } else if (p.outline) {
+        return SECONDARY_DARK_COLOR;
       } else if (p.secondary) {
         return SECONDARY_DARK_COLOR;
       }
-      // else if (p.simple) {
-      //   return PRIMARY_COLOR;
-      // }
     }};
     border: ${(p) => {
       // if (p.simple) {
@@ -98,7 +103,7 @@ const ButtonWrapper = styled.button`
     background-color: ${(p) => {
       if (p.primary) {
         return PRIMARY_MOST_DARK_COLOR;
-      } else if (p.secondary) {
+      } else if (p.outline) {
         return SECONDARY_MOST_DARK_COLOR;
       }
     }};
@@ -122,6 +127,7 @@ const Button = ({
   children,
   margin,
   style,
+  outline,
 }) => {
   return (
     <ButtonWrapper
@@ -132,6 +138,7 @@ const Button = ({
       fixedWidth={fixedWidth}
       negative={negative}
       positive={positive}
+      outline={outline}
       secondary={secondary}
       primary={primary}
     >

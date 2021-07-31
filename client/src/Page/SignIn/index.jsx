@@ -8,6 +8,7 @@ import Header from "../../Sections/Header/index";
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 import Line from "../../UI/Line/Line";
+import SearchSelect from "../../UI/SearchSelect/SearchSelect";
 
 import Logo from "../../Assets/LogoColor.svg";
 
@@ -21,9 +22,13 @@ const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-device-width: 768px) {
+  @media screen and (max-device-width: 425px) {
     margin: 0;
     width: initial;
+  }
+
+  @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    margin: 12px auto 0 auto;
   }
 `;
 const FormWrapper = styled.form`
@@ -38,9 +43,12 @@ const FormWrapper = styled.form`
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25),
     0px 15px 25px -11px rgba(0, 0, 0, 0.3);
 
-  @media screen and (max-device-width: 480px) {
+  @media screen and (max-device-width: 425px) {
     box-shadow: none;
     padding: 20px 16px;
+  }
+  @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    box-shadow: none;
   }
 `;
 const LogoImage = styled.img`
@@ -92,6 +100,22 @@ const SmallText = styled.div`
   opacity: 0.5;
   text-align: center;
 `;
+const SmallText2 = styled(SmallText)`
+  margin: 0 0 0 0;
+  position: absolute;
+  bottom: -6px;
+  background-color: #fff;
+  color: #969696;
+  opacity: 1;
+  width: 40px;
+`;
+const LineBlock = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+`;
 
 const SignIn = () => {
   const formik = useFormik({
@@ -142,7 +166,7 @@ const SignIn = () => {
               id="login"
               name="login"
               placeholder="superlearn@mail.ru"
-              title="Логин"
+              title="Адрес электронной почты"
               {...formik.getFieldProps("login")}
             />
             <Input
@@ -160,15 +184,16 @@ const SignIn = () => {
             <Button type="submit" margin="24px 0 0 0" fixedWidth primary>
               Войти
             </Button>
+            <LineBlock>
+              <SmallText2>или</SmallText2>
+              <Line margin="0" />
+            </LineBlock>
             <Link to="signup">
-              <Button type="submit" margin="12px 0 0 0" fixedWidth simple>
+              <Button type="submit" margin="0 0 0 0" fixedWidth secondary>
                 Создать аккаунт
               </Button>
             </Link>
           </InputsBlock>
-          {/* <RegistrationText>
-            <Link to="signup">Создать аккаунт</Link>
-          </RegistrationText> */}
         </FormWrapper>
         <Link to="/">
           <LogoImage width="140" src={Logo} />

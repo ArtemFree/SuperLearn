@@ -5,7 +5,7 @@ import { BORDER_INPUT, GRAY2 } from "../Constants";
 
 const SearchSelectWrapper = styled.div`
   position: relative;
-  width: 20%;
+  width: 100%;
 
   @media (max-width: 480px) {
     width: 100%;
@@ -13,6 +13,8 @@ const SearchSelectWrapper = styled.div`
 `;
 const Dropdown = styled.div`
   border-radius: 4px;
+  background-color: #ffffff;
+  z-index: 1000;
   margin-top: 6px;
   padding: 4px 0;
   position: absolute;
@@ -96,8 +98,8 @@ const SearchSelect = ({
       />
       {showSuggestion && (
         <Dropdown>
-          {value.length === 0 &&
-            list.map((e, i) => (
+          {value?.length === 0 &&
+            list?.map((e, i) => (
               <DropdownItem
                 key={e + i}
                 onClick={() => {
@@ -108,10 +110,10 @@ const SearchSelect = ({
                 {e}
               </DropdownItem>
             ))}
-          {value.length !== 0 &&
+          {value?.length !== 0 &&
             list
-              .filter((l) => search(l, value))
-              .map((e, i) => (
+              ?.filter((l) => search(l, value))
+              ?.map((e, i) => (
                 <DropdownItem
                   onClick={() => {
                     onChange(e);
@@ -122,8 +124,8 @@ const SearchSelect = ({
                   {e}
                 </DropdownItem>
               ))}
-          {value.length !== 0 &&
-            list.filter((l) => search(l, value)).length === 0 && (
+          {value?.length !== 0 &&
+            list?.filter((l) => search(l, value))?.length === 0 && (
               <EmptyItem>Ничего не найдено</EmptyItem>
             )}
         </Dropdown>

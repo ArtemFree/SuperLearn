@@ -4,14 +4,18 @@ import { useFormik } from "formik";
 import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
+import { connect } from "react-redux";
+import { signup } from "../../Store/actions/actions";
+
 import Header from "../../Sections/Header/index";
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 import Line from "../../UI/Line/Line";
+import Checkbox from "../../UI/Checkbox/index";
 
 import Logo from "../../Assets/LogoColor.svg";
 
-import { SIGNIN_TITLE } from "../../Data/Constants";
+import { SIGNUP_TITLE } from "../../Data/Constants";
 import { BORDER_INPUT, PRIMARY_COLOR } from "../../UI/Constants";
 
 const PageWrapper = styled.div`
@@ -21,9 +25,13 @@ const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-device-width: 768px) {
+  @media screen and (max-device-width: 425px) {
     margin: 0;
     width: initial;
+  }
+
+  @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    margin: 12px auto 0 auto;
   }
 `;
 const FormWrapper = styled.form`
@@ -38,9 +46,12 @@ const FormWrapper = styled.form`
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25),
     0px 15px 25px -11px rgba(0, 0, 0, 0.3);
 
-  @media screen and (max-device-width: 480px) {
+  @media screen and (max-device-width: 425px) {
     box-shadow: none;
     padding: 20px 16px;
+  }
+  @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    box-shadow: none;
   }
 `;
 const LogoImage = styled.img`
@@ -92,30 +103,66 @@ const SmallText = styled.div`
   opacity: 0.5;
   text-align: center;
 `;
+const SmallText2 = styled(SmallText)`
+  margin: 0 0 0 0;
+  position: absolute;
+  bottom: -6px;
+  background-color: #fff;
+  color: #969696;
+  opacity: 1;
+  width: 40px;
+`;
+const LineBlock = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+`;
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const { signup } = props;
+
   const formik = useFormik({
     initialValues: {
-      login: "",
+      name: "",
+      email: "",
       password: "",
+      password2: "",
+      remember: false,
+      data: false,
     },
     validateOnBlur: true,
     validationSchema: Yup.object({
-      login: Yup.string()
+      name: Yup.string()
+        .required("Представьтесь, пожалуйста")
+        .matches(
+          /^[а-яА-Я(ё|Ё)(\s)]+$/,
+          "Укажите имя и фамилию на русском языке без цифр и служебных символов"
+        ),
+      email: Yup.string()
         .min(4, "Введите больше 3 симловов")
         .required("Введите адрес электронной почты")
         .email("Введите корректный адрес электронной почты"),
       password: Yup.string()
         .min(5, "Введите больше 4 символов")
         .required("Введите пароль"),
+      password2: Yup.string()
+        .required("Введите пароль")
+        .test(
+          "",
+          "Пароли не сопадают",
+          (v, s) => v === s.from[0].value.password
+        ),
+      remember: Yup.boolean(),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      signup(values);
     },
   });
 
   useEffect(() => {
-    document.title = SIGNIN_TITLE;
+    document.title = SIGNUP_TITLE;
   }, []);
 
   return (
@@ -135,15 +182,27 @@ const SignUp = () => {
           </Text>
           <InputsBlock>
             <Input
-              type="email"
+              type="text"
               fixedWidth
-              error={formik.touched.login && formik.errors.login}
-              errorMessage={formik.touched.login && formik.errors.login}
-              id="login"
-              name="login"
+              error={formik.touched.name && formik.errors.name}
+              errorMessage={formik.touched.name && formik.errors.name}
+              id="name"
+              name="name"
+              placeholder="Иван Иванов"
+              title="Имя и фамилия"
+              {...formik.getFieldProps("name")}
+            />
+            <Input
+              type="email"
+              margin="20px 0 0 0"
+              fixedWidth
+              error={formik.touched.email && formik.errors.email}
+              errorMessage={formik.touched.email && formik.errors.email}
+              id="email"
+              name="email"
               placeholder="superlearn@mail.ru"
               title="Адрес электронной почты"
-              {...formik.getFieldProps("login")}
+              {...formik.getFieldProps("email")}
             />
             <Input
               fixedWidth
@@ -157,11 +216,31 @@ const SignUp = () => {
               type="password"
               {...formik.getFieldProps("password")}
             />
+            <Input
+              fixedWidth
+              margin="20px 0 0 0"
+              error={formik.touched.password2 && formik.errors.password2}
+              errorMessage={formik.touched.password2 && formik.errors.password2}
+              placeholder="********"
+              id="password2"
+              name="password2"
+              title="Повторите пароль"
+              type="password"
+              {...formik.getFieldProps("password2")}
+            />
+            <Checkbox
+              {...formik.getFieldProps("remember")}
+              label="Запомнить меня"
+            />
             <Button type="submit" margin="24px 0 0 0" fixedWidth primary>
               Зарегистрироваться
             </Button>
+            <LineBlock>
+              <SmallText2>или</SmallText2>
+              <Line margin="0" />
+            </LineBlock>
             <Link to="/signin">
-              <Button type="submit" margin="12px 0 0 0" fixedWidth simple>
+              <Button type="submit" margin="0" fixedWidth secondary>
                 Войти
               </Button>
             </Link>
@@ -176,4 +255,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default connect((state) => state, { signup })(SignUp);

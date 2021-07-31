@@ -7,7 +7,7 @@ const ContainerFluidWrapper = styled.div`
   padding-right: ${PADDING};
   padding-left: ${PADDING};
 
-  @media (max-width: 480px) {
+  @media (max-width: 425px) {
     padding-right: 15px;
     padding-left: 15px;
   }

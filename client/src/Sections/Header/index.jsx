@@ -25,8 +25,9 @@ const HeaderWrapper = styled.div`
   border-bottom: ${BORDER_INPUT};
   padding: 18px 0;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-device-width: 1024px) {
     padding: 8px 0;
+    border-bottom: ${BORDER_INPUT};
   } ;
 `;
 const HeaderBody = styled.div`
@@ -46,8 +47,13 @@ const MobileMenuElement = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   &:hover {
     background-color: ${GRAY2};
+  }
+
+  @media screen and (min-device-width: 425px) and (max-width: 1100px) {
+    padding: 16px 48px;
   }
 `;
 const NegativeMenuElement = styled(MobileMenuElement)`
@@ -147,10 +153,10 @@ const Header = () => {
           </Link>
           {!mobile && (
             <Menu>
-              {links.map((link) => {
+              {links.map((link, index) => {
                 if (link.type === "simple") {
                   return (
-                    <MenuElement>
+                    <MenuElement key={index + link.text + link.link}>
                       <Link to={link.link}>{link.text}</Link>
                     </MenuElement>
                   );
@@ -167,10 +173,10 @@ const Header = () => {
           {mobile && mobileMenu && (
             <MobileMenuWrapper>
               <MobileMenu>
-                {links.map((link) => {
+                {links.map((link, index) => {
                   if (link.type === "simple") {
                     return (
-                      <Link to={link.link}>
+                      <Link key={index + link.text + link.link} to={link.link}>
                         <MobileMenuElement
                           onClick={() => {
                             if (location.pathname === link.link) {
