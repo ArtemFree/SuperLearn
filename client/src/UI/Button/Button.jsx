@@ -27,6 +27,12 @@ const ButtonWrapper = styled.button`
   padding: 10px 16px;
   transition: transform 0.1s ease;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-height: 41px;
+
   @media (max-width: 480px) {
     padding: 16px 24px;
   }
@@ -116,7 +122,7 @@ const ButtonWrapper = styled.button`
 const Button = ({
   title,
   onClick,
-  isLoading,
+  loading,
   simple,
   disabled = false,
   primary,
@@ -134,7 +140,7 @@ const Button = ({
       style={{ ...style, margin: margin }}
       simple={simple}
       disabled={disabled}
-      onClick={onClick}
+      onClick={loading ? () => 0 : onClick}
       fixedWidth={fixedWidth}
       negative={negative}
       positive={positive}
@@ -142,8 +148,8 @@ const Button = ({
       secondary={secondary}
       primary={primary}
     >
-      {children}
-      {/* {isLoading ? <Loader /> : title} */}
+      {/* {children} */}
+      {loading ? <Loader /> : children}
     </ButtonWrapper>
   );
 };

@@ -5,8 +5,9 @@ import { createBrowserHistory } from "history";
 import AuthorPersonalCabinet from "./Page/AuthorPersonalCabinet/index";
 import RegistrationError from "./Page/Errors/RegistrationError/index";
 import ProjectPage from "./Page/Project/ProjectPage";
-import SignIn from "./Page/SignIn";
-import SignUp from "./Page/SignUp";
+import SignIn from "./Page/Sign/SignIn/index";
+import SignUp from "./Page/Sign/SignUp/index";
+import Meet from "./Page/Sign/Meet/index";
 
 const history = createBrowserHistory();
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/project/:id" component={ProjectPage} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/meet" component={Meet} />
       </Switch>
     </Router>
   );

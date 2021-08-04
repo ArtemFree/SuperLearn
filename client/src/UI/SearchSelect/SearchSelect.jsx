@@ -25,8 +25,8 @@ const Dropdown = styled.div`
   box-shadow: 0 10px 20px -5px rgb(0 0 0 / 40%), 0 0 2px rgb(0 0 0 / 30%);
 `;
 const DropdownItem = styled.div`
-  font-size: 16px;
-  padding: 12px 12px;
+  font-size: 15px;
+  padding: 10px 16px;
   cursor: pointer;
   &:hover {
     background-color: ${GRAY2};
@@ -44,11 +44,13 @@ const EmptyItem = styled(DropdownItem)`
 `;
 
 const search = (item, value) => {
-  if (!item || !value) return;
+  if (!item || !value || value.length === 0) return;
 
-  item = item.toLowerCase();
-  value = value.toLowerCase();
-  if (item === value || item.includes(value)) {
+  console.log(item, value);
+
+  item = item?.toLowerCase();
+  value = value?.toLowerCase();
+  if (item === value || item?.includes(value)) {
     return true;
   }
 };
@@ -65,6 +67,7 @@ const SearchSelect = ({
   fixedWidth,
   value,
   onChange,
+  margin,
 }) => {
   const [showSuggestion, setShowSuggestion] = useState(false);
   const root = useRef(null);
@@ -86,6 +89,7 @@ const SearchSelect = ({
       <Input
         fixedWidth={fixedWidth}
         value={value}
+        margin={margin}
         onChange={onChange}
         onFocus={() => setShowSuggestion(true)}
         error={error}
