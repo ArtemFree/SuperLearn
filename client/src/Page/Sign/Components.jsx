@@ -11,7 +11,8 @@ export const Wrapper = styled.div`
 `;
 export const PageWrapper = styled.div`
   width: 400px;
-  margin: 48px auto 0 auto;
+  padding: 24px 0 14px 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,10 +20,31 @@ export const PageWrapper = styled.div`
   @media screen and (max-device-width: 425px) {
     margin: 0;
     width: initial;
+    padding: 0 0 12px 0;
   }
 
   @media screen and (min-device-width: 426px) and (max-device-width: 768px) {
     margin: 12px auto 0 auto;
+    padding: 0 0 12px 0;
+  }
+`;
+export const PageWrapperBig = styled.div`
+  width: 600px;
+  padding: 24px 0 14px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-device-width: 425px) {
+    margin: 0;
+    width: initial;
+    padding: 0 0 12px 0;
+  }
+
+  @media screen and (min-device-width: 426px) and (max-device-width: 768px) {
+    margin: 12px auto 0 auto;
+    padding: 0 0 12px 0;
   }
 `;
 export const FormWrapper = styled.form`
@@ -30,7 +52,7 @@ export const FormWrapper = styled.form`
   /* min-height: 400px; */
   background-color: #fff;
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 20px 24px 12px 24px;
   display: flex;
   align-items: center;
   flex-flow: column;
@@ -62,6 +84,9 @@ export const InputsBlock = styled.div`
     margin: 12px 0 0 0;
   }
 `;
+export const InputsBlock2 = styled(InputsBlock)`
+  margin: 12px 0 0 0;
+`;
 export const Title = styled.h2`
   font-weight: 600;
   font-size: 24px;
@@ -71,7 +96,7 @@ export const Title = styled.h2`
   @media (max-width: 480px) {
     font-size: 28px;
     margin: 14px 0 16px 0;
-    line-height: 24px;
+    line-height: 32px;
   }
 `;
 export const Text = styled.p`
@@ -119,4 +144,20 @@ export const LineBlock = styled.div`
   align-items: center;
   justify-content: center;
   margin: 18px 0;
+`;
+export const ErrorMessage = styled.div`
+  background-color: red;
+  color: #fff;
+`;
+export const TimerText = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  user-select: none;
+  padding: 11px ​16px;
+  text-align: center;
+  margin: 18px 0 4px 0;
+  width: 100%;
+  color: ${PRIMARY_COLOR};
+  border: none;
 `;

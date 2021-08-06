@@ -17,7 +17,7 @@ import SearchSelect from "../../../UI/SearchSelect/SearchSelect";
 
 import {
   Wrapper,
-  PageWrapper,
+  PageWrapperBig,
   FormWrapper,
   LogoImage,
   InputsBlock,
@@ -28,12 +28,19 @@ import {
   SmallText,
   SmallText2,
   LineBlock,
+  // FlexRow,
 } from "../Components";
 
 import Logo from "../../../Assets/LogoWhite.svg";
 
 import { SIGNUP_TITLE } from "../../../Data/Constants";
 import { BORDER_INPUT, PRIMARY_COLOR } from "../../../UI/Constants";
+
+const FlexRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+`;
 
 const Meet = () => {
   const [loading, setLoading] = useState(false);
@@ -53,26 +60,17 @@ const Meet = () => {
     validateOnBlur: true,
     validationSchema: Yup.object({
       name: Yup.string()
-        .required("Представьтесь, пожалуйста")
+        .required("Укажите имя")
         .matches(
           /^[а-яА-Я(ё|Ё)(\s)]+$/,
-          "Укажите имя и фамилию на русском языке без цифр и служебных знаков"
+          "Имя должно быть на русском языке, без цифр и служебных знаков"
         ),
-      email: Yup.string()
-        .min(4, "Введите больше 3 знаков")
-        .required("Введите адрес электронной почты")
-        .email("Введите корректный адрес электронной почты"),
-      password: Yup.string()
-        .min(5, "Введите больше 4 знаков")
-        .required("Введите пароль"),
-      password2: Yup.string()
-        .required("Введите пароль")
-        .test(
-          "",
-          "Пароли не сопадают",
-          (v, s) => v === s.from[0].value.password
+      secondName: Yup.string()
+        .required("Укажите фамилию")
+        .matches(
+          /^[а-яА-Я(ё/Ё)(\s)]+$/,
+          "Фамилия должна быть на русском языке, без цифр и служебных знаков"
         ),
-      remember: Yup.boolean(),
     }),
     onSubmit: (values) => {
       dispatch(signup(values));
@@ -86,7 +84,7 @@ const Meet = () => {
   return (
     <Wrapper>
       <Header />
-      <PageWrapper>
+      <PageWrapperBig>
         <FormWrapper
           onSubmit={(event) => {
             event.preventDefault();
@@ -94,22 +92,38 @@ const Meet = () => {
           }}
         >
           <Title>Расскажите о себе</Title>
-          <Text>
+          {/* <Text>
             Создайте новый аккаунт в SuperLearn, чтобы иметь больше возможностей
             сервиса
-          </Text>
+          </Text> */}
           <InputsBlock>
-            <Input
-              type="text"
-              fixedWidth
-              error={formik.touched.name && formik.errors.name}
-              errorMessage={formik.touched.name && formik.errors.name}
-              id="name"
-              name="name"
-              placeholder="Иван Иванов"
-              title="Имя и фамилия"
-              {...formik.getFieldProps("name")}
-            />
+            <FlexRow>
+              <Input
+                type="text"
+                fixedWidth
+                margin="0 8px 0 0"
+                error={formik.touched.name && formik.errors.name}
+                errorMessage={formik.touched.name && formik.errors.name}
+                id="name"
+                name="name"
+                placeholder="Иван"
+                title="Имя *"
+                {...formik.getFieldProps("name")}
+              />
+              <Input
+                type="text"
+                fixedWidth
+                error={formik.touched.secondName && formik.errors.secondName}
+                errorMessage={
+                  formik.touched.secondName && formik.errors.secondName
+                }
+                id="secondName"
+                name="secondName"
+                placeholder="Иванов"
+                title="Фамилия *"
+                {...formik.getFieldProps("secondName")}
+              />
+            </FlexRow>
             <SearchSelect
               value={city}
               onChange={setCity}
@@ -134,7 +148,7 @@ const Meet = () => {
           <LogoImage width="140" src={Logo} />
           <SmallText>Помогаем учиться</SmallText>
         </Link>
-      </PageWrapper>
+      </PageWrapperBig>
     </Wrapper>
   );
 };

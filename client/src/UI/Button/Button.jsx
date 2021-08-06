@@ -16,6 +16,7 @@ import {
   BORDER_INPUT,
   SECONDARY_COLOR,
   SECONDARY_DARK_COLOR,
+  PRIMARY_LIGHT,
 } from "../Constants";
 
 const ButtonWrapper = styled.button`
@@ -54,13 +55,15 @@ const ButtonWrapper = styled.button`
       return WHITE;
     } else if (p.secondary) {
       return SECONDARY_COLOR;
+    } else if (p.textButton) {
+      return "initial";
     }
   }};
 
   color: ${(p) => {
     if (p.negative || p.positive || p.primary || p.secondary) {
       return WHITE;
-    } else if (p.outline) {
+    } else if (p.outline || p.textButton) {
       return PRIMARY_COLOR;
     }
   }};
@@ -78,6 +81,8 @@ const ButtonWrapper = styled.button`
       return BORDER_INPUT;
     } else if (p.secondary) {
       return BORDER_BUTTON_POSITIVE;
+    } else if (p.textButton) {
+      return "none";
     }
   }};
 
@@ -89,6 +94,8 @@ const ButtonWrapper = styled.button`
         return SECONDARY_DARK_COLOR;
       } else if (p.secondary) {
         return SECONDARY_DARK_COLOR;
+      } else if (p.textButton) {
+        return PRIMARY_LIGHT;
       }
     }};
     border: ${(p) => {
@@ -134,6 +141,7 @@ const Button = ({
   margin,
   style,
   outline,
+  textButton,
 }) => {
   return (
     <ButtonWrapper
@@ -145,6 +153,7 @@ const Button = ({
       negative={negative}
       positive={positive}
       outline={outline}
+      textButton={textButton}
       secondary={secondary}
       primary={primary}
     >

@@ -8,6 +8,7 @@ import ProjectPage from "./Page/Project/ProjectPage";
 import SignIn from "./Page/Sign/SignIn/index";
 import SignUp from "./Page/Sign/SignUp/index";
 import Meet from "./Page/Sign/Meet/index";
+import EmailCode from "./Page/Sign/EmailCode/index";
 
 const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/meet" component={Meet} />
+        <Route path="/email-code" component={EmailCode} />
       </Switch>
     </Router>
   );

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
+
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../../../Sections/Header/index";
 import Button from "../../../UI/Button/Button";
@@ -30,6 +32,10 @@ import {
 } from "../Components";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       login: "",
@@ -37,7 +43,7 @@ const SignIn = () => {
     },
     validateOnBlur: false,
     validationSchema: Yup.object({
-      login: Yup.string()
+      email: Yup.string()
         .min(4, "Введите больше 3 знаков")
         .required("Введите логин")
         .email("Введите корректную почту"),
@@ -46,24 +52,12 @@ const SignIn = () => {
         .required("Введите пароль"),
     }),
     onSubmit: (values) => {
-      console.log("submit", values);
+      dispatch({ type: "SIGN_IN", payload: { ...values } });
     },
   });
 
   useEffect(() => {
     document.title = SIGNIN_TITLE;
-
-    const onEnterHandler = (event) => {
-      if (event.key === "Enter") {
-        // formik.handleSubmit(event);
-      }
-    };
-
-    document.addEventListener("keydown", (event) => onEnterHandler(event));
-
-    return () => {
-      document.removeEventListener("keydown", (event) => onEnterHandler(event));
-    };
   }, []);
 
   return (
@@ -85,13 +79,13 @@ const SignIn = () => {
             <Input
               type="email"
               fixedWidth
-              error={formik.touched.login && formik.errors.login}
-              errorMessage={formik.touched.login && formik.errors.login}
-              id="login"
-              name="login"
+              error={formik.touched.email && formik.errors.email}
+              errorMessage={formik.touched.email && formik.errors.email}
+              id="email"
+              name="email"
               placeholder="superlearn@mail.ru"
               title="Адрес электронной почты"
-              {...formik.getFieldProps("login")}
+              {...formik.getFieldProps("email")}
             />
             <Input
               fixedWidth

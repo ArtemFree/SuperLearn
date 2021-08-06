@@ -80,10 +80,19 @@ const Input = ({
   onChange,
   fixedWidth,
   margin,
+  style,
+  maxlength,
 }) => {
   const input = React.useRef(null);
+
   return (
-    <Wrapper style={{ margin: margin ?? "0" }}>
+    <Wrapper
+      style={{
+        ...style,
+        width: fixedWidth ? "100%" : "",
+        margin: margin ?? "0",
+      }}
+    >
       {title && (
         <Title error={error} onClick={() => input.current.focus()}>
           {title}
@@ -103,6 +112,7 @@ const Input = ({
         autoComplete="false"
         placeholder={placeholder}
         type={type}
+        maxLength={maxlength}
       />
       {label && !errorMessage && <Label error={error}>{label}</Label>}
       {errorMessage && <ErrorLabel>{errorMessage}</ErrorLabel>}

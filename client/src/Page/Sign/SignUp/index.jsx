@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { connect } from "react-redux";
@@ -40,6 +40,8 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -50,12 +52,12 @@ const SignUp = () => {
     isValid: false,
     validateOnBlur: true,
     validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Представьтесь, пожалуйста")
-        .matches(
-          /^[а-яА-Я(ё|Ё)(\s)]+$/,
-          "Укажите имя и фамилию на русском языке без цифр и служебных знаков"
-        ),
+      // name: Yup.string()
+      //   .required("Представьтесь, пожалуйста")
+      //   .matches(
+      //     /^[а-яА-Я(ё|Ё)(\s)]+$/,
+      //     "Укажите имя и фамилию на русском языке без цифр и служебных знаков"
+      //   ),
       email: Yup.string()
         .min(4, "Введите больше 3 знаков")
         .required("Введите адрес электронной почты")
@@ -74,6 +76,7 @@ const SignUp = () => {
     }),
     onSubmit: (values) => {
       dispatch(signup(values));
+      history.push("/email-code");
     },
   });
 
@@ -95,14 +98,14 @@ const SignUp = () => {
 
   return (
     <Wrapper>
-      <Header />
+      {/* <Header /> */}
       <PageWrapper>
         <FormWrapper
           onSubmit={(event) => {
             event.preventDefault();
             formik.handleSubmit(event);
             if (formik.isValid) {
-              setLoading(true);
+              // setLoading(true);
               setTimeout(() => setLoading(false), 3000);
             }
           }}
@@ -113,7 +116,7 @@ const SignUp = () => {
             сервиса
           </Text>
           <InputsBlock>
-            <Input
+            {/* <Input
               type="text"
               fixedWidth
               error={formik.touched.name && formik.errors.name}
@@ -123,10 +126,10 @@ const SignUp = () => {
               placeholder="Иван Иванов"
               title="Имя и фамилия"
               {...formik.getFieldProps("name")}
-            />
+            /> */}
             <Input
               type="email"
-              margin="20px 0 0 0"
+              margin="0 0 0 0"
               fixedWidth
               error={formik.touched.email && formik.errors.email}
               errorMessage={formik.touched.email && formik.errors.email}
