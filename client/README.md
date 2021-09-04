@@ -2,10 +2,9 @@
 
 Написан на React, Redux, styled-components
 
-![image](https://user-images.githubusercontent.com/35904739/132094530-72c8044c-fb41-423b-adfd-10a1da5625e4.png)
-
 ![image](https://user-images.githubusercontent.com/35904739/132094601-d2f3be60-bd17-4dcd-8deb-357fc63c022b.png)
 
+![image](https://user-images.githubusercontent.com/35904739/132094662-5afef455-9091-4473-9141-367db0388ae7.png)
 
 ## Getting Started with Create React App
 
