@@ -2,6 +2,8 @@
 
 Написан на React, Redux, styled-components
 
+![image](https://user-images.githubusercontent.com/35904739/132094530-72c8044c-fb41-423b-adfd-10a1da5625e4.png)
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
