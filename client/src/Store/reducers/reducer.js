@@ -16,8 +16,6 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SIGN_IN":
-      console.log(state.email, action.payload.email);
-      console.log(state.email == action.payload.email);
       return {
         ...state,
         isAuthorized:
@@ -47,7 +45,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         codeResended: true,
-        code: Number(state.code + 1111),
+        code: Number(state.code) + 1111,
       };
 
     case "REGISTRATION_SUCCESS":

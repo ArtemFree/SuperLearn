@@ -38,6 +38,7 @@ const DEFAULT_TIMER_SECONDS = 60;
 
 const EmailCode = () => {
   let resendTimer = useRef(0);
+  
   const [timerNumber, setTimerNumber] = useState(DEFAULT_TIMER_SECONDS);
   const [timerText, setTimerText] = useState("1:00");
 

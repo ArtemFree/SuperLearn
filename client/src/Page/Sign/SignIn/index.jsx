@@ -43,7 +43,7 @@ const SignIn = () => {
     },
     validateOnBlur: false,
     validationSchema: Yup.object({
-      email: Yup.string()
+      login: Yup.string()
         .min(4, "Введите больше 3 знаков")
         .required("Введите логин")
         .email("Введите корректную почту"),
